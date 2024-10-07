@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SeoulStay.Listing">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Your Listings: "
+                   FontSize="Large"
+                   HorizontalOptions="Center"/>
+
+            <ListView x:Name="ListingsListView" HasUnevenRows="True" WidthRequest="300" HeightRequest="50">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Image Source="property.png"
+                                       HeightRequest="50"
+                                       WidthRequest="50"
+                                       VerticalOptions="Center" />
+                                <StackLayout Orientation="Vertical" Padding="10,0">
+                                    <Label Text="{Binding Title}" FontSize="Medium"/>
+                                    <Label Text="{Binding LastDateOfPricing, StringFormat='Last date of pricing: {0:yyyy/MM/dd}'}" 
+                                           FontSize="Small" 
+                                           IsVisible="{Binding LastDateOfPricing}" />
+
+                                </StackLayout>
+
+                                <Button Text="$"
+                                        CommandParameter="{Binding .}"
+                                        Clicked="Button_Clicked"
+                                        HorizontalOptions="EndAndExpand"
+                                        VerticalOptions="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="logout"
+                    HorizontalOptions="Center"
+                    Margin="0,20,0,0"
+                    Clicked="Button_Clicked_1" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
